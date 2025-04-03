@@ -185,9 +185,12 @@ Se ha creado una nueva columna llamada `Active Customer` para indicar si un clie
 
 
 
+
+
+
 # .info()
 
-ℹ️ Análisis del .info() del dataset Customer Loyalty History
+*** ℹ️ Análisis del .info() del dataset Customer Loyalty History ***
 Al ejecutar df_loyalty.info(), se obtiene una visión general de la estructura y calidad de los datos. A continuación se resumen los puntos clave:
 
 1. Detección de valores nulos
@@ -204,6 +207,27 @@ Si en algún momento se imputan o eliminan los nulos, se podrían convertir a ti
 Conclusión:
 Los datos están en general bien tipados y organizados. Se identifican valores nulos relevantes en Salary y en las columnas de cancelación, lo que deberá ser tratado durante la limpieza. El resto de columnas presentan tipos adecuados para su análisis posterior.
 
+
+ *** Tipo de dato en columnas de cancelación ***
+
+Durante la exploración inicial las columnas `Cancellation Year` y `Cancellation Month` aparecen como tipo `float64`, a pesar de que representan años y meses (valores enteros).
+
+
+ ¿Por qué son `float64` y no `int64`?
+
+Esto ocurre porque ambas columnas contienen valores `NaN`, los cuales pandas solo puede almacenar en columnas de tipo `float` (en su comportamiento por defecto).  
+Los tipos `int` normales (`int64`) **no pueden contener `NaN`**, por lo que se convierte todo a `float64` automáticamente.
+
+
+Decido **mantener ambas columnas como `float64`**, ya que:
+
+- Los `NaN` tienen un significado importante (clientes activos).
+- No es necesario cambiar el tipo para el análisis actual.
+- Podria usar un tipo especial llamado "Int64" (con mayúscula), que sí acepta NaN pero forzar la conversión a `int` podría provocar errores o pérdida de información.
+
+Si en un futuro se desea trabajar con enteros y permitir `NaN`, podría considerarse convertirlas a `Int64` (entero "nullable" de pandas).
+
+
 # .nunique() 
 
 Análisis de valores únicos con .nunique()
@@ -219,8 +243,23 @@ La mayoría de columnas muestran una variabilidad adecuada para el análisis.  E
 
 ### 🔗 Unión de los datasets: vuelos + información de cliente
 
+Decidido limpiar primero cada dataset por separado (df_loyalty y df_flight) antes de unirlos, con el objetivo de:
+- Corregir valores erróneos (como salarios negativos).
+- Imputar nulos con la lógica adecuada según cada contexto.
+- Eliminar duplicados exactos que no aportaban información.
+Así aseguro que el merge se hace sobre datos limpios y consistentes, evitando arrastrar errores al DataFrame final.
+
 Para combinar la información de comportamiento de vuelo (`df_flight`) con los datos personales y demográficos (`df_loyalty`), se realiza una unión mediante la columna común `Loyalty Number`.
 
-Se utiliza un **inner join**, ya que solo se desea conservar la información de aquellos clientes que aparecen en ambos conjuntos de datos.
 
+### 🔗 Unión eficiente de los datasets
+
+Se realiza la unión de los dos conjuntos de datos `df_flight` (actividad de vuelo) y `df_loyalty` (información del cliente), utilizando la clave común `Loyalty Number`.
+
+Se emplea un **inner join**, ya que se considera la forma más eficiente para este análisis:
+- Solo conserva las filas que están presentes en ambos datasets.
+- Elimina datos incompletos o no vinculados.
+- Optimiza el tamaño del DataFrame resultante.
+
+df_merged = pd.merge(df_flight, df_loyalty, on='Loyalty Number', how='inner')
 
