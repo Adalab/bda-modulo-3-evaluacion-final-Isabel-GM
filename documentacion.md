@@ -4,52 +4,52 @@ La exploración con `df_flight.describe().T` aporta información muy útil para 
 
 ---------------------
 
-### ✅ Principales insights detectados:
+## ✅ Principales insights detectados:
 
-#### 1. Distribuciones generales
-- **Flights Booked**: Media = 4.12, Mediana = 1.00 → Distribución asimétrica. La mayoría de clientes reserva pocos vuelos, pero hay algunos con muchos vuelos (máx: 21).
-- **Flights with Companions**: Similar patrón, con una media baja (1.03) y máximos altos (hasta 11).
-- **Points Redeemed** y **Dollar Cost Points Redeemed**: Tienen medias bajas pero desviaciones estándar muy altas -> algunos clientes redimen muchísimos puntos.
+# 1. Distribuciones generales
+- Flights Booked: Media = 4.12, Mediana = 1.00 → Distribución asimétrica. La mayoría de clientes reserva pocos vuelos, pero hay algunos con muchos vuelos (máx: 21).
+- Flights with Companions: Similar patrón, con una media baja (1.03) y máximos altos (hasta 11).
+- Points Redeemed y Dollar Cost Points Redeemed: Tienen medias bajas pero desviaciones estándar muy altas -> algunos clientes redimen muchísimos puntos.
 
-#### 2. Valores cero frecuentes
+# 2. Valores cero frecuentes
 - Varias columnas como `Flights Booked`, `Distance`, `Points Redeemed` y `Dollar Cost Points Redeemed` tienen **mínimos en 0**, lo que puede reflejar meses sin actividad para algunos clientes.
 
-#### 3. Rango y outliers
+# 3. Rango y outliers
 - Algunas columnas muestran valores extremos, como:
   - `Points Redeemed`: hasta 876 puntos redimidos.
   - `Dollar Cost Points Redeemed`: máximo de 71$, muy por encima del percentil 75 (que es 0.00).
 
-#### 4. Validación de datos de fecha
+# 4. Validación de datos de fecha
 - `Year`: media = 2017.5, mínimo = 2017, máximo = 2018 → confirman que los datos corresponden a solo dos años.
 - `Month`: de 1 a 12, con media de 6.
 
 ---------------------------
 
-## ℹ️ Exploración con `.info()` del dataset `Customer Flight Activity`
+### ℹ️ Exploración con `.info()` del dataset `Customer Flight Activity`
 
 La función `df_flight.info()` nos proporciona una visión general de la estructura del dataset. A continuación se detallan los principales puntos observados:
 
 ---
 
-### ✅ Tamaño del dataset
+# ✅ Tamaño del dataset
 - **405.624 filas** y **10 columnas** → un dataset amplio, con un buen volumen de información para analizar.
 
-### ✅ Valores nulos
+# ✅ Valores nulos
 - Todas las columnas tienen **405.624 valores no nulos**, por lo tanto:
   - **No hay valores nulos** en este dataset.
   - No se requiere tratamiento de nulos en esta fase.
 
-### ✅ Tipos de datos (`dtype`)
+# ✅ Tipos de datos (`dtype`)
 - **9 columnas** tienen tipo de dato `int64`.
 - **1 columna** (`Points Accumulated`) es `float64`, lo cual es lógico ya que puede tener valores decimales.
 - Confirmamos que los decimales están representados correctamente con `punto (.)`, como espera Python.
 
-### ✅ Memoria
+# ✅ Memoria
 - El DataFrame ocupa aproximadamente **30.9 MB en memoria**, lo cual es razonable para su tamaño.
 
 ---
 
-### 🧠 Conclusión
+## 🧠 Conclusión
 Los datos están **completos y correctamente tipados**, lo cual nos permite pasar sin problemas a la siguiente fase: exploración visual, análisis de valores extremos o unión con otros datasets.
 
 ----------------------------------
@@ -61,13 +61,13 @@ Esto significa que existen **1864 registros que son idénticos en todas las colu
 
 ---
 
-### ✅ Opciones para tratar los duplicados
+## ✅ Opciones para tratar los duplicados
 
-#### 1. Mantener los duplicados
+# 1. Mantener los duplicados
 - Puede ser válido si los datos duplicados reflejan situaciones reales repetidas (por ejemplo, vuelos múltiples del mismo tipo).
 - Aun así, es recomendable dejar constancia de que los duplicados existen y han sido analizados.
 
-#### 2. Eliminar los duplicados
+# 2. Eliminar los duplicados
 - Si se asume que estas repeticiones no aportan valor o distorsionan el análisis estadístico, pueden eliminarse fácilmente con:
 
 ---
@@ -128,7 +128,7 @@ Solo hay datos de salario para 12.499 clientes, lo que indica que faltan más de
 La media salarial es de 79.245 $, pero hay valores negativos (mínimo: -58.486 $), lo cual no tiene sentido y debe considerarse un error.
 El máximo es de 407.228 $, lo que podría indicar un outlier o cliente de muy alto ingreso.
 
-Tratamiento de salarios negativos
+***  Tratamiento de salarios negativos ***
 
 Durante la revisión de la columna Salary, se detectaron 20 valores negativos.
 Aunque no es un número elevado, se considera que estos valores corresponden a errores de carga, ya que el salario no puede ser negativo en un contexto realista.
@@ -141,12 +141,48 @@ El número de casos es muy bajo (20 de 16.737 registros), por lo que no distorsi
 Así se evita eliminar información útil de esos clientes.
 Decisión: transformar esos valores negativos a positivos utilizando .abs().
 
+*** Gestion de nulos de Salary ***
+
+🧼Imputación de valores nulos en la columna Salary
+Tras analizar la distribución de la columna Salary, observo que:
+
+La media es 79.359 € y la mediana es 73.455 €.
+Hay cierta dispersión (desviación típica de 34.750 €).
+El valor máximo es muy elevado (407.228 €), lo que sugiere posibles outliers.
+
+Decido rellenar los valores nulos con la mediana, ya que:
+- Es una medida robusta frente a valores extremos.
+- Refleja mejor el comportamiento típico del salario en este contexto.
+
 
 2. Cancellation Year y Cancellation Month
 
 Solo 2.067 clientes tienen una fecha de cancelación registrada.
 Esto indica que la mayoría siguen activos.
 Las fechas y meses son correctos y no presentan errores aparentes.
+
+# Gestión de nulos de las columnas Cancellation Year y Cancellation Month: 
+
+Estas olumnas indican cuando el cliente dejó su membresía, por lo que si un cliente sigue activo, no tiene fecha de cancelacion y aparece como NaN
+
+- ¿Qué hacer con estos nulos? En este caso, no se deben imputar ni eliminar, porque:
+    1. Su ausencia tiene un significado: el cliente sigue siendo parte del programa.
+    2. Eliminarlos sería perder información útil.
+    3. Imputarlos sería inventar algo que no ocurrió
+
+# 🧾 Nueva columna: `Active Customer`
+
+Se ha creado una nueva columna llamada `Active Customer` para indicar si un cliente sigue activo o no en el programa de fidelización.
+
+- Se basa en la columna `Cancellation Year`:
+  - Si el valor es `NaN`, significa que el cliente **sigue activo**.
+  - Si hay un año registrado, indica que **el cliente ha cancelado** su membresía.
+
+- Se han utilizado los valores `"Yes"` para clientes activos y `"No"` para clientes inactivos.
+
+
+
+
 
 
 # .info()
@@ -177,3 +213,14 @@ Se ejecutó df_loyalty.nunique() para conocer cuántos valores únicos existen p
 
 Conclusión:
 La mayoría de columnas muestran una variabilidad adecuada para el análisis.  Eliminar la columna Country (sin variación), y revisar si Postal Code aporta valor adicional respecto a ciudad y provincia.
+
+
+------------------------------
+
+### 🔗 Unión de los datasets: vuelos + información de cliente
+
+Para combinar la información de comportamiento de vuelo (`df_flight`) con los datos personales y demográficos (`df_loyalty`), se realiza una unión mediante la columna común `Loyalty Number`.
+
+Se utiliza un **inner join**, ya que solo se desea conservar la información de aquellos clientes que aparecen en ambos conjuntos de datos.
+
+
