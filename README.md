@@ -52,7 +52,7 @@ Los vuelos aumentan en verano y diciembre, mostrando estacionalidad clara.
 
 
 
-![Vuelos por mes](vuelos_por_mes.png)
+![Vuelos por mes](img/vuelos_por_mes.png)
 
 
 
@@ -60,7 +60,7 @@ Los vuelos aumentan en verano y diciembre, mostrando estacionalidad clara.
 
 ### 📍 Distribución de tarjetas de fidelidad
 
-![Distribución por tipo de tarjeta](clientes_por_tarjeta.png)
+![Distribución por tipo de tarjeta](img/clientes_por_tarjeta.png)
 
 
 La mayoría de los clientes tienen tarjeta **Star** o **Nova**, siendo las más populares.
@@ -70,7 +70,7 @@ La mayoría de los clientes tienen tarjeta **Star** o **Nova**, siendo las más 
 ### 📚 Salario por nivel educativo
 Existe una clara correlación: **mayor educación, mayor salario promedio**.
 
-![Salario por nivel educativo](salario_por_educacion.png)
+![Salario por nivel educativo](img/salario_por_educacion.png)
 
 ---
 
