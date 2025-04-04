@@ -263,3 +263,48 @@ Se emplea un **inner join**, ya que se considera la forma más eficiente para es
 
 df_merged = pd.merge(df_flight, df_loyalty, on='Loyalty Number', how='inner')
 
+-------------------------
+
+### VISUALIZACION: 
+
+# 1. ¿Como se distribuye la cantidad de vuelos reservados por mes durante el año?
+
+# 📊 Distribución de vuelos reservados por mes
+
+El objetivo de esta visualización es analizar **cómo varía la cantidad de vuelos reservados (`Flights Booked`) a lo largo del año**, agrupando los datos por mes.
+
+Selecciono el gráfico de barras por los siguientes motivos:
+
+- Permite **comparar cantidades entre categorías** discretas (en este caso, los meses del año).
+- Muestra con claridad las diferencias entre los meses.
+
+### 📊 Análisis: Distribución de vuelos reservados por mes
+
+Tras representar gráficamente la cantidad total de vuelos reservados por mes, se observan los siguientes patrones:
+
+---
+
+# 🔼 Meses con mayor número de vuelos reservados:
+
+En la visualización se aprecia claramente una estacionalidad en el comportamiento de los usuarios.
+
+Los meses de verano, especialmente julio, seguido por junio y agosto, destacan como los períodos con mayor volumen de vuelos reservados. Este patrón es coherente con las vacaciones estivales, tanto escolares como laborales, en las que muchas personas aprovechan para viajar, lo que provoca un aumento significativo de la demanda.
+
+Otro pico relevante se observa en diciembre, mes asociado a las celebraciones navideñas y de fin de año, durante el cual también es habitual que se realicen desplazamientos familiares o de ocio.
+
+Por otro lado, los meses de enero y febrero presentan los niveles más bajos de reservas. Esto puede deberse a la conocida "cuesta de enero", un periodo posterior a las fiestas en el que muchas personas ajustan su presupuesto. Además, el clima invernal podría influir negativamente en las decisiones de viaje, reduciendo así la demanda.
+
+En conjunto, el gráfico refleja cómo los hábitos de viaje varían a lo largo del año, estando fuertemente condicionados por factores como las vacaciones, las festividades y el contexto económico
+
+
+## 2. ¿Existe una relación entre la distancia de los vuelos y los puntos acumulados por los cliente?
+
+
+# ✅ Interpretación:
+
+En la visualización se observa una **relación lineal positiva muy clara y marcada**.  
+Los puntos siguen trayectorias diagonales bien definidas, lo cual indica que a **mayor distancia recorrida**, los clientes **acumulan más puntos**.
+
+Esta relación es lógica dentro del contexto de un programa de fidelización, donde los puntos suelen asignarse en función de la distancia volada.
+
+Existe una **correlación directa, sistemática y consistente** entre ambas variables. Esto sugiere que la asignación de puntos por vuelo se realiza siguiendo una fórmula clara y estable en función de la distancia.
