@@ -308,3 +308,35 @@ Los puntos siguen trayectorias diagonales bien definidas, lo cual indica que a *
 Esta relación es lógica dentro del contexto de un programa de fidelización, donde los puntos suelen asignarse en función de la distancia volada.
 
 Existe una **correlación directa, sistemática y consistente** entre ambas variables. Esto sugiere que la asignación de puntos por vuelo se realiza siguiendo una fórmula clara y estable en función de la distancia.
+
+## 3. ¿Cuál es la distribución de los clientes por provincia o estado?
+
+He utilizado un gráfico de barras horizontales para visualizar la distribución de clientes únicos por provincia.
+El gráfico muestra una **distribución claramente desigual** entre las diferentes regiones. Las provincias con mayor número de clientes son:
+
+- **Ontario**, con diferencia, es la provincia con más clientes registrados.
+- Le siguen **British Columbia** y **Quebec**, también con una alta concentración de clientes.
+
+Por otro lado, provincias como **Yukon**, **Newfoundland** y **Prince Edward Island** tienen una representación significativamente menor.
+
+Este tipo de distribución puede deberse a varios factores como la densidad de población, la infraestructura aérea disponible o el enfoque comercial de la compañía en determinadas regiones.
+
+La mayor parte de los clientes se concentra en unas pocas provincias, lo cual puede ser clave para orientar decisiones de negocio, campañas de fidelización o expansión de servicios.
+
+
+## 4.  ¿Cómo se compara el salario promedio entre los diferentes niveles educativos de los clientes?
+
+El gráfico muestra cómo varía el salario promedio de los clientes en función de su nivel educativo. Se observa una **tendencia clara**: a mayor nivel educativo, mayor salario promedio.
+
+- Los clientes con **Doctorado** son los que presentan el salario promedio más alto.
+- Les siguen aquellos con **Master**, también con ingresos elevados.
+- **Bachelor** y **College** muestran salarios similares, en un rango medio.
+- El grupo **High School or Below** tiene el salario promedio más bajo.
+
+Esta distribución es coherente con lo esperado, reflejando que **la formación académica tiene un impacto positivo en los ingresos** de los clientes.
+
+# 5.  ¿Cuál es la proporción de clientes con diferentes tipos de tarjetas de fidelidad?
+
+Para resolver este ejercicio, parto de la premisa de que cada cliente puede aparecer múltiples veces en el DataFrame original (`df_unido`) debido al registro mensual de su actividad, sin embargo, el tipo de tarjeta de fidelidad (`Loyalty Card`) **no cambia** para un mismo cliente, por lo que **es fundamental contar cada cliente una sola vez**.
+
+
