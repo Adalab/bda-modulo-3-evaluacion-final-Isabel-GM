@@ -60,7 +60,8 @@ Los vuelos aumentan en verano y diciembre, mostrando estacionalidad clara.
 
 ### 📍 Distribución de tarjetas de fidelidad
 
-![Distribución de tarjetas de fidelidad](clientes_por_tarjetas.png)
+![Distribución por tipo de tarjeta](clientes_por_tarjeta.png)
+
 
 La mayoría de los clientes tienen tarjeta **Star** o **Nova**, siendo las más populares.
 
