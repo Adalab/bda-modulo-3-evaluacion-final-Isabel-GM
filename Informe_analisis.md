@@ -82,6 +82,9 @@ Distribución muy equilibrada entre hombres y mujeres en todos los estados civil
    - Incorporar variables temporales para análisis de tendencias.
    - Analizar clientes por antigüedad y fidelidad (usando Enrollment Year).
 
+5. **Recopilar datos completos de Salary para todos los niveles educativos**:
+   - Falta de este dato en el colectivo "College"
+
 ---
 
 ### 📄 Informe creado por

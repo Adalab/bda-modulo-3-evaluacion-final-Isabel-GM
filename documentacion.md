@@ -115,15 +115,8 @@ Decisión: transformar esos valores negativos a positivos utilizando .abs().
 
 *** Gestion de nulos de Salary ***
 
-Tras analizar la distribución de la columna Salary, observo que:
+Tras identificar que los valores NaN en la columna Salary estan exclusivamente asociados al nivel educativo College, decido imputar esos valores NaN por la mediana de los salarios disponibles. Esto se hace para mantener la integridad de los datos y evitar que los valores faltantes afecten el análisis, especialmente en gráficos y cálculos estadísticos. Elijo la mediana porque es menos sensible a valores atípicos y proporciona una estimación más robusta en comparación con la media. Esta imputación me permite seguir con el análisis de manera más completa y sin distorsionar los resultados.
 
-- La media es 79.359 € y la mediana es 73.455 €.
-- Hay cierta dispersión (desviación típica de 34.750 €).
-- El valor máximo es muy elevado (407.228 €), lo que sugiere posibles outliers.
-
-Decido rellenar los valores nulos con la mediana, ya que:
-- Es una medida robusta frente a valores extremos.
-- Refleja mejor el comportamiento típico del salario en este contexto.
 
 --- 
 
