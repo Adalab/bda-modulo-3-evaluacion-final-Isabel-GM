@@ -60,7 +60,7 @@ Los vuelos aumentan en verano y diciembre, mostrando estacionalidad clara.
 
 ### 📍 Distribución de tarjetas de fidelidad
 
-![Distribución de tarjetas de fidelidad](cliente_por_tarjetas.png)
+![Distribución de tarjetas de fidelidad](clientes_por_tarjetas.png)
 
 La mayoría de los clientes tienen tarjeta **Star** o **Nova**, siendo las más populares.
 
@@ -87,10 +87,10 @@ Existe una clara correlación: **mayor educación, mayor salario promedio**.
 
 Si quieres ver el análisis completo, con todos los pasos, gráficos, explicaciones y decisiones técnicas, puedes consultarlo aquí:
 
-👉 [Ver informe completo](Informe_cliente.md)
+👉 [Ver informe completo](Informe_analisis.md)
 
 
-👉 [Ver notebook completo](ejercicio evaluación mod 3.ipynb)
+👉 [Ver notebook completo](Ejercicio_mod3.ipynb)
 
 
 ---
