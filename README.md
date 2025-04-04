@@ -87,7 +87,8 @@ Existe una clara correlación: **mayor educación, mayor salario promedio**.
 
 Si quieres ver el análisis completo, con todos los pasos, gráficos, explicaciones y decisiones técnicas, puedes consultarlo aquí:
 
-👉 [Ver informe completo](informe_analisis.md)
+👉 [Ver informe completo](Informe_cliente.md)
+
 
 👉 [Ver notebook completo](ejercicio evaluación mod 3.ipynb)
 
