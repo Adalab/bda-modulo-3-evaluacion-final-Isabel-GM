@@ -1,10 +1,8 @@
-## 📊 Análisis inicial de .describe().T` del dataset `Customer Flight Activity`
+## Documentacion:
 
-La exploración con `df_flight.describe().T` aporta información muy útil para entender la distribución general de las variables numéricas del dataset.
+---
 
----------------------
-
-## ✅ Principales insights detectados:
+##  Principales insights detectados:
 
 # 1. Distribuciones generales
 - Flights Booked: Media = 4.12, Mediana = 1.00 → Distribución asimétrica. La mayoría de clientes reserva pocos vuelos, pero hay algunos con muchos vuelos (máx: 21).
@@ -23,16 +21,11 @@ La exploración con `df_flight.describe().T` aporta información muy útil para 
 - `Year`: media = 2017.5, mínimo = 2017, máximo = 2018 → confirman que los datos corresponden a solo dos años.
 - `Month`: de 1 a 12, con media de 6.
 
----------------------------
-
-### ℹ️ Exploración con `.info()` del dataset `Customer Flight Activity`
-
-La función `df_flight.info()` nos proporciona una visión general de la estructura del dataset. A continuación se detallan los principales puntos observados:
-
 ---
 
-# ✅ Tamaño del dataset
-- **405.624 filas** y **10 columnas** → un dataset amplio, con un buen volumen de información para analizar.
+###  Exploración con `.info()` del dataset `Customer Flight Activity`
+
+La función `df_flight.info()` proporciona una visión general de la estructura del dataset. Detalles de la info obtenida:
 
 # ✅ Valores nulos
 - Todas las columnas tienen **405.624 valores no nulos**, por lo tanto:
@@ -42,35 +35,26 @@ La función `df_flight.info()` nos proporciona una visión general de la estruct
 # ✅ Tipos de datos (`dtype`)
 - **9 columnas** tienen tipo de dato `int64`.
 - **1 columna** (`Points Accumulated`) es `float64`, lo cual es lógico ya que puede tener valores decimales.
-- Confirmamos que los decimales están representados correctamente con `punto (.)`, como espera Python.
+- Confirmo que los decimales están representados correctamente con `punto (.)`, como espera Python.
 
-# ✅ Memoria
-- El DataFrame ocupa aproximadamente **30.9 MB en memoria**, lo cual es razonable para su tamaño.
-
----
-
-## 🧠 Conclusión
-Los datos están **completos y correctamente tipados**, lo cual nos permite pasar sin problemas a la siguiente fase: exploración visual, análisis de valores extremos o unión con otros datasets.
+Los datos están **completos y correctos**, lo cual permite pasar sin problemas a la siguiente fase de exploración visual, análisis de valores extremos o unión con otros datasets.
 
 ----------------------------------
 
 ## 📑 Duplicados en el dataset `Customer Flight Activity`
 
-Se detectaron **1864 filas duplicadas**.  
+Se detectan **1864 filas duplicadas**.  
 Esto significa que existen **1864 registros que son idénticos en todas las columnas**.
-
----
 
 ## ✅ Opciones para tratar los duplicados
 
 # 1. Mantener los duplicados
 - Puede ser válido si los datos duplicados reflejan situaciones reales repetidas (por ejemplo, vuelos múltiples del mismo tipo).
-- Aun así, es recomendable dejar constancia de que los duplicados existen y han sido analizados.
+- Aun así, dejo constancia de que los duplicados existen y han sido analizados.
 
 # 2. Eliminar los duplicados
-- Si se asume que estas repeticiones no aportan valor o distorsionan el análisis estadístico, pueden eliminarse fácilmente con:
+- Si se asume que estas repeticiones no aportan valor o distorsionan el análisis estadístico, pueden eliminarse fácilmente.
 
----
 
 *** Análisis detallado de filas duplicadas ***
 
@@ -101,19 +85,7 @@ Dado que estos duplicados:
 Decido eliminarlos del dataset antes de continuar con la fase de análisis y visualización. Esta limpieza mejora la calidad del dataset y permite obtener resultados más precisos.
 
 
------------------------------------
-
-## 🔎 Diferencia entre `.nunique()` y `.unique()` en pandas
-
-Durante la exploración del DataFrame `df_flight`, hem utilizado el método `.nunique()` para obtener el número de valores únicos por columna.
-
 ---
-
-### ✅ `.nunique()`
-- Devuelve **cuántos valores únicos hay** en cada columna (o en una columna específica).
-- Muy útil para detectar columnas con baja variabilidad o redundantes.
-
------------------------
 
 ### csv Loyalty:
 
@@ -143,27 +115,25 @@ Decisión: transformar esos valores negativos a positivos utilizando .abs().
 
 *** Gestion de nulos de Salary ***
 
-🧼Imputación de valores nulos en la columna Salary
 Tras analizar la distribución de la columna Salary, observo que:
 
-La media es 79.359 € y la mediana es 73.455 €.
-Hay cierta dispersión (desviación típica de 34.750 €).
-El valor máximo es muy elevado (407.228 €), lo que sugiere posibles outliers.
+- La media es 79.359 € y la mediana es 73.455 €.
+- Hay cierta dispersión (desviación típica de 34.750 €).
+- El valor máximo es muy elevado (407.228 €), lo que sugiere posibles outliers.
 
 Decido rellenar los valores nulos con la mediana, ya que:
 - Es una medida robusta frente a valores extremos.
 - Refleja mejor el comportamiento típico del salario en este contexto.
 
+--- 
 
-2. Cancellation Year y Cancellation Month
+# Gestión de nulos de las columnas Cancellation Year y Cancellation Month: 
 
 Solo 2.067 clientes tienen una fecha de cancelación registrada.
 Esto indica que la mayoría siguen activos.
 Las fechas y meses son correctos y no presentan errores aparentes.
 
-# Gestión de nulos de las columnas Cancellation Year y Cancellation Month: 
-
-Estas olumnas indican cuando el cliente dejó su membresía, por lo que si un cliente sigue activo, no tiene fecha de cancelacion y aparece como NaN
+Estas columnas indican cuando el cliente dejó su membresía, por lo que si un cliente sigue activo, no tiene fecha de cancelacion y aparece como NaN
 
 - ¿Qué hacer con estos nulos? En este caso, no se deben imputar ni eliminar, porque:
     1. Su ausencia tiene un significado: el cliente sigue siendo parte del programa.
@@ -180,18 +150,11 @@ Se ha creado una nueva columna llamada `Active Customer` para indicar si un clie
 
 - Se han utilizado los valores `"Yes"` para clientes activos y `"No"` para clientes inactivos.
 
-
-
-
-
-
-
-
+---
 
 # .info()
 
 *** ℹ️ Análisis del .info() del dataset Customer Loyalty History ***
-Al ejecutar df_loyalty.info(), se obtiene una visión general de la estructura y calidad de los datos. A continuación se resumen los puntos clave:
 
 1. Detección de valores nulos
 
@@ -239,31 +202,22 @@ Conclusión:
 La mayoría de columnas muestran una variabilidad adecuada para el análisis.  Eliminar la columna Country (sin variación), y revisar si Postal Code aporta valor adicional respecto a ciudad y provincia.
 
 
-------------------------------
+---
 
 ### 🔗 Unión de los datasets: vuelos + información de cliente
 
 Decidido limpiar primero cada dataset por separado (df_loyalty y df_flight) antes de unirlos, con el objetivo de:
+
 - Corregir valores erróneos (como salarios negativos).
 - Imputar nulos con la lógica adecuada según cada contexto.
 - Eliminar duplicados exactos que no aportaban información.
+
 Así aseguro que el merge se hace sobre datos limpios y consistentes, evitando arrastrar errores al DataFrame final.
 
-Para combinar la información de comportamiento de vuelo (`df_flight`) con los datos personales y demográficos (`df_loyalty`), se realiza una unión mediante la columna común `Loyalty Number`.
+Para combinar la información de comportamiento de vuelo (`df_flight`) con los datos personales y demográficos (`df_loyalty`), realizo una unión mediante la columna común `Loyalty Number`.
 
 
-### 🔗 Unión eficiente de los datasets
-
-Se realiza la unión de los dos conjuntos de datos `df_flight` (actividad de vuelo) y `df_loyalty` (información del cliente), utilizando la clave común `Loyalty Number`.
-
-Se emplea un **inner join**, ya que se considera la forma más eficiente para este análisis:
-- Solo conserva las filas que están presentes en ambos datasets.
-- Elimina datos incompletos o no vinculados.
-- Optimiza el tamaño del DataFrame resultante.
-
-df_merged = pd.merge(df_flight, df_loyalty, on='Loyalty Number', how='inner')
-
--------------------------
+---
 
 ### VISUALIZACION: 
 
@@ -278,29 +232,12 @@ Selecciono el gráfico de barras por los siguientes motivos:
 - Permite **comparar cantidades entre categorías** discretas (en este caso, los meses del año).
 - Muestra con claridad las diferencias entre los meses.
 
-### 📊 Análisis: Distribución de vuelos reservados por mes
-
-Tras representar gráficamente la cantidad total de vuelos reservados por mes, se observan los siguientes patrones:
 
 ---
-
-# 🔼 Meses con mayor número de vuelos reservados:
-
-En la visualización se aprecia claramente una estacionalidad en el comportamiento de los usuarios.
-
-Los meses de verano, especialmente julio, seguido por junio y agosto, destacan como los períodos con mayor volumen de vuelos reservados. Este patrón es coherente con las vacaciones estivales, tanto escolares como laborales, en las que muchas personas aprovechan para viajar, lo que provoca un aumento significativo de la demanda.
-
-Otro pico relevante se observa en diciembre, mes asociado a las celebraciones navideñas y de fin de año, durante el cual también es habitual que se realicen desplazamientos familiares o de ocio.
-
-Por otro lado, los meses de enero y febrero presentan los niveles más bajos de reservas. Esto puede deberse a la conocida "cuesta de enero", un periodo posterior a las fiestas en el que muchas personas ajustan su presupuesto. Además, el clima invernal podría influir negativamente en las decisiones de viaje, reduciendo así la demanda.
-
-En conjunto, el gráfico refleja cómo los hábitos de viaje varían a lo largo del año, estando fuertemente condicionados por factores como las vacaciones, las festividades y el contexto económico
 
 
 ## 2. ¿Existe una relación entre la distancia de los vuelos y los puntos acumulados por los cliente?
 
-
-# ✅ Interpretación:
 
 En la visualización se observa una **relación lineal positiva muy clara y marcada**.  
 Los puntos siguen trayectorias diagonales bien definidas, lo cual indica que a **mayor distancia recorrida**, los clientes **acumulan más puntos**.
@@ -309,20 +246,14 @@ Esta relación es lógica dentro del contexto de un programa de fidelización, d
 
 Existe una **correlación directa, sistemática y consistente** entre ambas variables. Esto sugiere que la asignación de puntos por vuelo se realiza siguiendo una fórmula clara y estable en función de la distancia.
 
+--- 
+
 ## 3. ¿Cuál es la distribución de los clientes por provincia o estado?
 
 He utilizado un gráfico de barras horizontales para visualizar la distribución de clientes únicos por provincia.
-El gráfico muestra una **distribución claramente desigual** entre las diferentes regiones. Las provincias con mayor número de clientes son:
+El gráfico muestra una **distribución claramente desigual** entre las diferentes regiones. La interpretacion esta a continuación del gráfico.
 
-- **Ontario**, con diferencia, es la provincia con más clientes registrados.
-- Le siguen **British Columbia** y **Quebec**, también con una alta concentración de clientes.
-
-Por otro lado, provincias como **Yukon**, **Newfoundland** y **Prince Edward Island** tienen una representación significativamente menor.
-
-Este tipo de distribución puede deberse a varios factores como la densidad de población, la infraestructura aérea disponible o el enfoque comercial de la compañía en determinadas regiones.
-
-La mayor parte de los clientes se concentra en unas pocas provincias, lo cual puede ser clave para orientar decisiones de negocio, campañas de fidelización o expansión de servicios.
-
+--- 
 
 ## 4.  ¿Cómo se compara el salario promedio entre los diferentes niveles educativos de los clientes?
 
@@ -335,8 +266,15 @@ El gráfico muestra cómo varía el salario promedio de los clientes en función
 
 Esta distribución es coherente con lo esperado, reflejando que **la formación académica tiene un impacto positivo en los ingresos** de los clientes.
 
+---
+
 # 5.  ¿Cuál es la proporción de clientes con diferentes tipos de tarjetas de fidelidad?
 
-Para resolver este ejercicio, parto de la premisa de que cada cliente puede aparecer múltiples veces en el DataFrame original (`df_unido`) debido al registro mensual de su actividad, sin embargo, el tipo de tarjeta de fidelidad (`Loyalty Card`) **no cambia** para un mismo cliente, por lo que **es fundamental contar cada cliente una sola vez**.
+Para resolver este ejercicio, tengo que tener en cuenta  que cada cliente puede aparecer múltiples veces en el DataFrame original (`df_unido`) debido al registro mensual de su actividad, sin embargo, el tipo de tarjeta de fidelidad (`Loyalty Card`) **no cambia** para un mismo cliente, por lo que **es fundamental contar cada cliente una sola vez**.
+
+---
+# 6. ¿Cómo se distribuyen los clientes según su estado civil y género?
+
+Utilizare un countplot() agrupando por Genero (en hue= Gender) porque permte comparar los valores dentro de cada categoria (mujeres y hombres dentro de married)y tambien comparar entre ellas (solteros vs casados) y ambas son columnas categoricas 
 
 
