@@ -89,7 +89,8 @@ Si quieres ver el análisis completo, con todos los pasos, gráficos, explicacio
 
 👉 [Ver informe completo](informe_analisis.md)
 
-👉 [Ver análisis completo en el notebook](notebook.ipynb)
+👉 [Ver notebook completo](ejercicio evaluación mod 3.ipynb)
+
 
 ---
 
